@@ -1,0 +1,14 @@
+Formulas:
+
+Bono de bateria = 1000 * numero de baterias
+
+Equipo = numero de placas * watts
+
+EPC / TargetPPW= SelectedPPW + (Battery Cost / Equipo)
+
+
+Ganancias:
+
+green power = (ppw(gptech) * Size) - %5 (+bono de bateria)
+
+seller = (ppw(seller) * size) - %5

@@ -1,0 +1,25 @@
+Placas Solares (PV):
+
+1) Red line: Costo.
+2) Green power tech: ganancias de oxor como empresa min: 0.2 max:0.4
+3) consultor green line min: 0.25 max: unlimited
+4) Para bajar ganancia de green power tech es requerida autorizacion de oxor.
+5) Mil dolares de bono son esenciales para la operatividad de green power tech.
+6) Restar 5% a todo menos la bateria (royalty fee de sunrun).
+7) Green power tech se le resta 5% y se suma el bono de bateria.
+8) Ganancia de green power tech.
+9) Ganancia de consultor.
+10) Precio de Bateria: 1 ($13000) $1000 para bono.
+11) Precio de bateria: 2 ($26000) $2000 para bono.
+12) Precio de bateria: 3 ($49000) $3000 para bono.
+13) Director de venta: de su equipo es 0,1 por venta, lo paga oxor.
+
+---
+
+Notas:
+
+Precios enphase estan pendientes.
+
+Colocar espacio para copiar todos estos valores y reportarlos en telegram.
+
+Preabropación de sunrun (pago mas alto) -> Cotizacion preliminar -> se asigna consultor para visita -> Cotizacion con cierre y crédito aprobado.
