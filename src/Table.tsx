@@ -320,6 +320,15 @@ Notas:
         </div>
         <div className="col">
           <h2 className="mt-4">Ganancia</h2>
+          <p className="small">
+            Estos resultados incluyen el descuento del royalty fee.
+          </p>
+          <p className="fs-5">
+            Ganancia Total:{" "}
+            {state.gananciaGreenPowerTech +
+              state.gananciaDirector +
+              state.gananciaConsultor}
+          </p>
           <p>
             Ganancia Green Power Tech:{" "}
             {(state.gananciaGreenPowerTech + state.batteryBonus).toFixed(2)}
