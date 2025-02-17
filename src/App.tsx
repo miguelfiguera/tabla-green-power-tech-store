@@ -26,9 +26,17 @@ function App() {
         (email === "ovazquez@greenpowertech.store" &&
           passphrase === "gptech2025..") ||
         (email === "kevin.vidal@greenpowertech.store" &&
-          passphrase === "dvgptech2025..")
+          passphrase === "dvgptech2025..") ||
+        (email == "perrosaurio" && passphrase === "randori2025..")
       ) {
-        const name = email == "me.rojas@rradvisor.net" ? "Mariu" : "Oxor";
+        const name =
+          email == "me.rojas@rradvisor.net"
+            ? "Mariu"
+            : email == "ovazquez@greenpowertech.store"
+            ? "Oxor"
+            : email == "kevin.vidal@greenpowertech.store"
+            ? "Kevin"
+            : "Perrosaurio Pirata";
 
         toast.success(`Welcome ${name}`);
         setActive(true);

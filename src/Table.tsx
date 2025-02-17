@@ -14,6 +14,7 @@ interface State {
   gananciaDirector: number;
   redline: number;
   batteryBonus: number;
+  gananciaTotal: number;
 }
 
 type Action =
@@ -37,6 +38,7 @@ const initialState: State = {
   gananciaDirector: 0,
   redline: 2.2,
   batteryBonus: 1000,
+  gananciaTotal: 0,
 };
 
 const reducer = (state: State, action: Action): State => {
@@ -71,12 +73,15 @@ const reducer = (state: State, action: Action): State => {
       const gananciaDirector = !state.gananciaDV
         ? 0
         : state.watts * state.PV * 0.01 - state.watts * state.PV * 0.01 * 0.05; // Example calculation
+      const gananciaTotal =
+        gananciaGreenPowerTech + gananciaConsultor + gananciaDirector;
       return {
         ...state,
         gananciaGreenPowerTech,
         gananciaConsultor,
         gananciaDirector,
         batteryBonus,
+        gananciaTotal,
       };
     default:
       return state;
@@ -322,6 +327,10 @@ Notas:
             ).toFixed(2)}
           </p>
           <p> Bono de Bateria: {state.batteryBonus}</p>
+          <p>
+            Ganancia de Green Power Tech + Bono de bateria:{" "}
+            {(state.gananciaGreenPowerTech + state.batteryBonus).toFixed(2)}
+          </p>
         </div>
         <div className="col">
           <h2 className="mt-4">Ganancia</h2>
@@ -329,14 +338,14 @@ Notas:
             Estos resultados incluyen el descuento del royalty fee.
           </p>
           <p className="fs-5">
-            Ganancia Total:{" "}
+            Ganancia Total (sin bono de bateria):{" "}
             {state.gananciaGreenPowerTech +
               state.gananciaDirector +
               state.gananciaConsultor}
           </p>
           <p>
-            Ganancia Green Power Tech:{" "}
-            {(state.gananciaGreenPowerTech + state.batteryBonus).toFixed(2)}
+            Ganancia de Green Power Tech (sin bateria):{" "}
+            {state.gananciaGreenPowerTech.toFixed(2)}
           </p>
           <p>Ganancia Consultor: {state.gananciaConsultor.toFixed(2)}</p>
           <p>Ganancia Director: {state.gananciaDirector.toFixed(2)}</p>
