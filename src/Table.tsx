@@ -292,9 +292,9 @@ Notas:
         Check Values
       </button>
 
-      <button className="btn btn-primary mx-2" onClick={handleCalculate}>
+      {/*      <button className="btn btn-primary mx-2" onClick={handleCalculate}>
         Calculate
-      </button>
+      </button> */}
       <button
         className="btn btn-secondary mx-2"
         onClick={handleCopyToClipboard}
