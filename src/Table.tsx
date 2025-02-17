@@ -117,6 +117,47 @@ const Table = () => {
     handleCalculate();
   }
 
+  const handleCopyToClipboard = () => {
+    const textToCopy = `
+Case PK: \n
+Client Name: \n
+Client Address: \n
+Size: ${state.watts * state.PV} \n
+Battery Type: ${
+      state.batteryType == 13000
+        ? "Tesla 13.5kWh"
+        : state.batteryType === 26000
+        ? "Tesla 27kWh"
+        : "Tesla 40kWh"
+    } \n
+Battery Price: ${state.batteryType} \n
+Target PPW: ${(
+      state.redline +
+      state.GreenTechPpw +
+      state.SellerPpw +
+      state.batteryType / (state.watts * state.PV)
+    ).toFixed(2)} \n
+Bono de Bateria: ${state.batteryBonus} \n
+--------------------------------------------------------------------
+Ganancia Green Power Tech: ${(
+      state.gananciaGreenPowerTech + state.batteryBonus
+    ).toFixed(2)} \n
+Ganancia Consultor: ${state.gananciaConsultor.toFixed(2)} \n
+Ganancia Director: ${state.gananciaDirector.toFixed(2)} \n
+Notas: 
+`;
+
+    navigator.clipboard
+      .writeText(textToCopy)
+      .then(() => {
+        toast.success("Resultados copiados al portapapeles!");
+      })
+      .catch((err) => {
+        console.error("Failed to copy: ", err);
+        toast.error("Error al copiar al portapapeles.");
+      });
+  };
+
   return (
     <div className="container mt-4">
       <h2>Valores</h2>
@@ -250,8 +291,14 @@ const Table = () => {
       <button className="btn btn-primary mx-2" onClick={handleCalculate}>
         Calculate
       </button>
+      <button
+        className="btn btn-secondary mx-2"
+        onClick={handleCopyToClipboard}
+      >
+        Copy Values
+      </button>
 
-      <div className="row">
+      <div className="d-lg-flex flex-row justify-content-center">
         <div className="col">
           <h2 className="mt-4">Resultados</h2>
           <p>Size: {state.watts * state.PV}</p>

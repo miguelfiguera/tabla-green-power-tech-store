@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import useStore from "./Helpers/zustand/state";
 import Table from "./Table";
 import { ToastContainer, toast } from "react-toastify";
@@ -21,10 +21,14 @@ function App() {
         return;
       }
       if (
-        email === "me.rojas@rradvisor.net" &&
-        passphrase === "rradvisor2025.."
+        (email === "me.rojas@rradvisor.net" &&
+          passphrase === "rradvisor2025..") ||
+        (email === "ovazquez@greenpowertech.store" &&
+          passphrase === "gptech2025..")
       ) {
-        toast.success("Welcome Manager.");
+        const name = email == "me.rojas@rradvisor.net" ? "Mariu" : "Oxor";
+
+        toast.success(`Welcome ${name}`);
         setActive(true);
       } else {
         toast.error("Invalid credentials.");

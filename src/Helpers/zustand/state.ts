@@ -13,9 +13,9 @@ interface StoreState {
 
 const useStore = create<StoreState>((set) => ({
   //dev
-  active: true,
+  //active: true,
   //production
-  // active: false,
+  active: false,
   email: "",
   passphrase: "",
   check: false,
