@@ -1,5 +1,6 @@
-import { useReducer } from "react";
+import { useReducer, useEffect } from "react";
 import { batteries } from "./Helpers/Batteries";
+import { toast } from "react-toastify";
 
 interface State {
   watts: number;
@@ -89,6 +90,32 @@ const Table = () => {
   const handleCalculate = () => {
     dispatch({ type: "CALCULATE" });
   };
+
+  function checkValues() {
+    if (state.watts * state.PV < 4050) {
+      toast.error("Placas Insuficientes");
+      dispatch({ type: "SET_WATTS", payload: 405 });
+      dispatch({ type: "SET_PV", payload: 10 });
+      return;
+    }
+    if (state.GreenTechPpw < 0.2 || state.GreenTechPpw > 0.4) {
+      toast.error("PPW GreenTech fuera de rango, tienes permiso de oxor?");
+    }
+
+    if (state.SellerPpw < 0.25) {
+      toast.error("PPW Seller fuera de rango, tienes permiso del vendedor?");
+      dispatch({ type: "SET_SELLER_PPW", payload: 0.25 });
+      return;
+    }
+    if (state.batteryType == 13000 && state.PV > 19) {
+      toast.warning("No puedes vender mas de 19 PV con bateria de 13k");
+      dispatch({ type: "SET_PV", payload: 19 });
+      return;
+    }
+
+    toast.success("Ok, puedes proceder.");
+    handleCalculate();
+  }
 
   return (
     <div className="container mt-4">
@@ -215,16 +242,28 @@ const Table = () => {
         </select>
       </div>
 
-      <button className="btn btn-primary" onClick={handleCalculate}>
+      <button className="btn btn-success mx-2" onClick={checkValues}>
+        {" "}
+        Check Values
+      </button>
+
+      <button className="btn btn-primary mx-2" onClick={handleCalculate}>
         Calculate
       </button>
+
       <div className="row">
         <div className="col">
           <h2 className="mt-4">Resultados</h2>
           <p>Size: {state.watts * state.PV}</p>
           <p>Battery Price: {state.batteryType}</p>
           <p>
-            Target PPW: {state.redline + state.GreenTechPpw + state.SellerPpw}
+            Target PPW:{" "}
+            {(
+              state.redline +
+              state.GreenTechPpw +
+              state.SellerPpw +
+              state.batteryType / (state.watts * state.PV)
+            ).toFixed(2)}
           </p>
           <p> Bono de Bateria: {state.batteryBonus}</p>
         </div>

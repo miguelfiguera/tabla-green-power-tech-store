@@ -1,9 +1,3 @@
-export interface Battery {
-  id: number;
-  name: string;
-  value: number;
-}
-
 export const batteries = [
   { id: 1, name: "Tesla 13.5kWh", value: 13000 },
   { id: 2, name: "Tesla 27kWh", value: 26000 },
