@@ -143,6 +143,11 @@ Target PPW: ${(
     ).toFixed(2)} \n
 Bono de Bateria: ${state.batteryBonus} \n
 --------------------------------------------------------------------
+Ganancia Total: $${
+      state.gananciaGreenPowerTech +
+      state.gananciaDirector +
+      state.gananciaConsultor
+    } \n
 Ganancia Green Power Tech: ${(
       state.gananciaGreenPowerTech + state.batteryBonus
     ).toFixed(2)} \n

@@ -24,7 +24,9 @@ function App() {
         (email === "me.rojas@rradvisor.net" &&
           passphrase === "rradvisor2025..") ||
         (email === "ovazquez@greenpowertech.store" &&
-          passphrase === "gptech2025..")
+          passphrase === "gptech2025..") ||
+        (email === "kevin.vidal@greenpowertech.store" &&
+          passphrase === "dvgptech2025..")
       ) {
         const name = email == "me.rojas@rradvisor.net" ? "Mariu" : "Oxor";
 
