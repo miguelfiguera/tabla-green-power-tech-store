@@ -98,8 +98,12 @@ const Table = () => {
       dispatch({ type: "SET_PV", payload: 10 });
       return;
     }
-    if (state.GreenTechPpw < 0.2 || state.GreenTechPpw > 0.4) {
+    if (state.GreenTechPpw != 0.4) {
       toast.error("PPW GreenTech fuera de rango, tienes permiso de oxor?");
+    }
+    if (state.GreenTechPpw < 0.2) {
+      toast.error("PPW GreenTech fuera de rango, reset al minimo");
+      dispatch({ type: "SET_GREENTECH_PPW", payload: 0.2 });
     }
 
     if (state.SellerPpw < 0.25) {
