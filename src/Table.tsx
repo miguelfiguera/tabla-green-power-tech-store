@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from "react";
+import { useReducer } from "react";
 import { batteries } from "./Helpers/Batteries";
 import { toast } from "react-toastify";
 
