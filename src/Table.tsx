@@ -154,15 +154,18 @@ Green Power Tech: ${state.GreenTechPpw}
 Consultor: ${state.SellerPpw} 
 Ganancia DV: ${state.gananciaDV ? "Si" : "No"} 
 Bono de Bateria: ${state.batteryBonus} 
+Ganancia Green Power Tech (+ bono de bateria): ${(
+      state.gananciaGreenPowerTech + state.batteryBonus
+    ).toFixed(2)} 
 --------------------------------------------------------------------\n
 Ganancia Total: $${
       state.gananciaGreenPowerTech +
       state.gananciaDirector +
       state.gananciaConsultor
     } 
-Ganancia Green Power Tech: ${(
-      state.gananciaGreenPowerTech + state.batteryBonus
-    ).toFixed(2)} 
+Ganancia Green Power Tech (sin bateria): ${state.gananciaGreenPowerTech.toFixed(
+      2
+    )}
 Ganancia Consultor: ${state.gananciaConsultor.toFixed(2)} 
 Ganancia Director: ${state.gananciaDirector.toFixed(2)} 
 Notas: 
