@@ -128,36 +128,43 @@ const Table = () => {
 
   const handleCopyToClipboard = () => {
     const textToCopy = `
-Case PK: \n
-Client Name: \n
-Client Address: \n
-Size: ${state.watts * state.PV} \n
+Case PK: 
+Client Name: 
+Client Address: 
+Watts: ${state.watts} 
+PV: ${state.PV} 
+Size: ${state.watts * state.PV} 
 Battery Type: ${
       state.batteryType == 13000
         ? "Tesla 13.5kWh"
         : state.batteryType === 26000
         ? "Tesla 27kWh"
         : "Tesla 40kWh"
-    } \n
-Battery Price: ${state.batteryType} \n
+    } 
+Battery Price: ${state.batteryType} 
+--------------------------------------------------------------------\n
 Target PPW: ${(
       state.redline +
       state.GreenTechPpw +
       state.SellerPpw +
       state.batteryType / (state.watts * state.PV)
-    ).toFixed(2)} \n
-Bono de Bateria: ${state.batteryBonus} \n
---------------------------------------------------------------------
+    ).toFixed(2)} 
+Redline: ${state.redline} 
+Green Power Tech: ${state.GreenTechPpw} 
+Consultor: ${state.SellerPpw} 
+Ganancia DV: ${state.gananciaDV ? "Si" : "No"} 
+Bono de Bateria: ${state.batteryBonus} 
+--------------------------------------------------------------------\n
 Ganancia Total: $${
       state.gananciaGreenPowerTech +
       state.gananciaDirector +
       state.gananciaConsultor
-    } \n
+    } 
 Ganancia Green Power Tech: ${(
       state.gananciaGreenPowerTech + state.batteryBonus
-    ).toFixed(2)} \n
-Ganancia Consultor: ${state.gananciaConsultor.toFixed(2)} \n
-Ganancia Director: ${state.gananciaDirector.toFixed(2)} \n
+    ).toFixed(2)} 
+Ganancia Consultor: ${state.gananciaConsultor.toFixed(2)} 
+Ganancia Director: ${state.gananciaDirector.toFixed(2)} 
 Notas: 
 `;
 
