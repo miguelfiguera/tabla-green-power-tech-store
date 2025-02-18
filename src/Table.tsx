@@ -97,10 +97,10 @@ const Table = () => {
   };
 
   function checkValues() {
-    if (state.watts * state.PV < 4050) {
+    if (state.watts * state.PV < 3240) {
       toast.error("Placas Insuficientes");
       dispatch({ type: "SET_WATTS", payload: 405 });
-      dispatch({ type: "SET_PV", payload: 10 });
+      dispatch({ type: "SET_PV", payload: 8 });
       return;
     }
     if (state.GreenTechPpw != 0.4) {
