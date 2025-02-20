@@ -50,7 +50,7 @@ const initialState: State = {
   clientName: "",
   clientAddress: "",
   projectId: "",
-  casePK: "",
+  email: "",
 };
 
 const reducer = (state: State, action: Action): State => {
