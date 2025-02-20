@@ -15,6 +15,10 @@ interface State {
   redline: number;
   batteryBonus: number;
   gananciaTotal: number;
+  clientName: string;
+  clientAddress: string;
+  projectId: string;
+  email: string;
 }
 
 type Action =
@@ -24,6 +28,10 @@ type Action =
   | { type: "SET_SELLER_PPW"; payload: number }
   | { type: "SET_GANANCIA_DV"; payload: boolean }
   | { type: "SET_BATTERY_TYPE"; payload: number }
+  | { type: "SET_CLIENT_EMAIL"; payload: string }
+  | { type: "SET_PROJECT_ID"; payload: string }
+  | { type: "SET_CLIENT_NAME"; payload: string }
+  | { type: "SET_CLIENT_ADDRESS"; payload: string }
   | { type: "CALCULATE" };
 
 const initialState: State = {
@@ -39,10 +47,22 @@ const initialState: State = {
   redline: 2.2,
   batteryBonus: 1000,
   gananciaTotal: 0,
+  clientName: "",
+  clientAddress: "",
+  projectId: "",
+  casePK: "",
 };
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
+    case "SET_CLIENT_EMAIL":
+      return { ...state, email: action.payload };
+    case "SET_CLIENT_ADDRESS":
+      return { ...state, clientAddress: action.payload };
+    case "SET_CLIENT_NAME":
+      return { ...state, clientName: action.payload };
+    case "SET_PROJECT_ID":
+      return { ...state, projectId: action.payload };
     case "SET_WATTS":
       return { ...state, watts: action.payload };
     case "SET_PV":
@@ -128,9 +148,11 @@ const Table = () => {
 
   const handleCopyToClipboard = () => {
     const textToCopy = `
-Case PK: 
-Client Name: 
-Client Address: 
+Case PK: ${state.projectId}
+Client Email: ${state.email}
+Client Name: ${state.clientName}
+Client Address: ${state.clientAddress}
+--------------------------------------------------------------------\n
 Watts: ${state.watts} 
 PV: ${state.PV} 
 Size: ${state.watts * state.PV} 
@@ -185,7 +207,62 @@ Notas:
   return (
     <div className="container mt-4">
       <h2>Valores</h2>
-
+      <div className="mb-3">
+        <label htmlFor="watts" className="form-label">
+          Project ID:
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="pk"
+          value={state.clientName}
+          onChange={(e) =>
+            dispatch({ type: "SET_PROJECT_ID", payload: e.target.value })
+          }
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="watts" className="form-label">
+          Client Name:
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="name"
+          value={state.clientName}
+          onChange={(e) =>
+            dispatch({ type: "SET_CLIENT_NAME", payload: e.target.value })
+          }
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="watts" className="form-label">
+          Client Address:
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="address"
+          value={state.clientAddress}
+          onChange={(e) =>
+            dispatch({ type: "SET_CLIENT_ADDRESS", payload: e.target.value })
+          }
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="watts" className="form-label">
+          Client Email:
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          id="email"
+          value={state.email}
+          onChange={(e) =>
+            dispatch({ type: "SET_CLIENT_EMAIL", payload: e.target.value })
+          }
+        />
+      </div>
       <div className="mb-3">
         <label htmlFor="RedLine" className="form-label">
           Redline:
