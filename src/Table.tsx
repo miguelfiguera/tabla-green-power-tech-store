@@ -83,16 +83,12 @@ const reducer = (state: State, action: Action): State => {
           ? 2000
           : 3000;
       const gananciaGreenPowerTech = !state.gananciaDV
-        ? state.watts * state.PV * state.GreenTechPpw -
-          state.watts * state.PV * state.GreenTechPpw * 0.05
-        : state.watts * state.PV * (state.GreenTechPpw - 0.07) -
-          state.watts * state.PV * (state.GreenTechPpw - 0.07) * 0.05;
-      const gananciaConsultor =
-        state.watts * state.PV * state.SellerPpw -
-        state.watts * state.PV * state.SellerPpw * 0.05; // Example calculation
+        ? state.watts * state.PV * state.GreenTechPpw
+        : state.watts * state.PV * (state.GreenTechPpw - 0.07);
+      const gananciaConsultor = state.watts * state.PV * state.SellerPpw;
       const gananciaDirector = !state.gananciaDV
         ? 0
-        : state.watts * state.PV * 0.07 - state.watts * state.PV * 0.07 * 0.05; // Example calculation
+        : state.watts * state.PV * 0.07; // Example calculation
       const gananciaTotal =
         gananciaGreenPowerTech + gananciaConsultor + gananciaDirector;
       return {
